@@ -1,0 +1,126 @@
+{% load static %}
+{% load embed_video_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>pluudo.com</title>
+  <link rel="stylesheet" href="../../static/styles.css">
+</head>
+
+<body onload="myFunction()">
+  <br>
+
+<script>
+var n = localStorage.getItem('on_load_counter');
+ 
+if (n === null) {
+    n = 0;
+}
+ 
+n++;
+ 
+localStorage.setItem("on_load_counter", n);
+ 
+
+</script>
+<script>
+
+function myFunction() {
+  //localStorage.setItem(localStorage.getItem("count"), localStorage.getItem("count")+1)
+  localStorage.setItem("count",localStorage.getItem("count")+1);
+  
+  if(n%3 == 0){
+    document.getElementById("desc").innerHTML = "Your search engine for visually appealing videos ";
+  }
+  if(n%3 == 1){
+    document.getElementById("desc").innerHTML = "Collect videos from all across & store at one place ";
+  }
+  if(n%3 == 2){
+    document.getElementById("desc").innerHTML = "Find video inspirations quick & easy ";
+  }
+}
+</script>      
+         <script>
+
+          let bool = 1;
+
+          function hide() {
+            var list = document.getElementsByClassName("video_description");
+            for(var i=0; i<list.length; i++){
+              if(bool%2 == 0){
+                list[i].style.display = 'block';
+              }
+              else{
+                list[i].style.display = 'none';
+              }
+            }
+            bool++;
+          }
+          
+          </script>
+
+         
+       <div class="header" style="color:blue;">
+        <a href="http://localhost:8000">
+          <img style="margin-left: 30%; width:50%" src="../static/anne/logo.png" alt="Pluudo_logo">
+        </a>
+        
+        <a onclick="hide()">
+         <img style="width: 50px;" src="../static/anne/Pluudo_Show_Text.png" alt="videos_description">
+       </a>
+     </div>
+
+         <div id="desc" style="text-align:center; "> </div>
+         
+       <br><br>
+        <!-- <button onclick="hide()">Desc</button> 
+        <a onclick="hide()">
+          <img src="../static/anne/Pluudo_Show_Text.png" alt="">
+        </a>
+        -->
+      <div class="">
+        {% for i in obj %}
+          <div class="videos_list">
+            <div class = "video-container">
+              {% video i.video  %}
+            </div>
+
+            <div class="video_description">
+                
+            {{ i.desc }}, {{ i.added }} 
+            </div>
+            <br> <br> <br>
+          </div> 
+        {% endfor %}
+        </div>
+        <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;">
+          <iframe style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden" 
+             frameborder="0" type="text/html" src="https://www.dailymotion.com/embed/video/x87s7im?autoplay=1" 
+             width="100%" height="100%" allowfullscreen allow="autoplay"> 
+          </iframe> 
+       </div>
+        <div class="footer">
+          <div class="footer_dimensions">
+
+              <a class="pluudo_mid_icons" href="">
+                <img src="../static/anne/Pluudo_Search.png" alt="Pluudo_Search_icon">
+              </a>
+              <a class="pluudo_mid_icons" href="">
+                <img src="../static/anne/Pluudo_Add_Video.png" alt="Pluudo_Search_icon">
+              </a>
+              <a class="pluudo_mid_icons" href="">
+                <img src="../static/anne/Pluudo_Profile.png" alt="Pluudo_Profile_icon">
+              </a>
+            
+            <a class="pluudo_icon" href="#">
+              <img src="../static/anne/Pluudo_Home.png" alt="Pluudo_Home">
+            </a>
+
+          </div>
+        </div>
+
+</body>
+</html>
